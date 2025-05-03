@@ -1,15 +1,14 @@
-import { FaRegBookmark, FaShareAlt, FaEye, FaStar } from "react-icons/fa";
+import {
+  FaRegBookmark,
+  FaShareAlt,
+  FaEye,
+  FaStar,
+  FaRegStar,
+} from "react-icons/fa";
 import { format } from "date-fns";
 
 const NewsCard = ({ news }) => {
-  const {
-    title,
-    author,
-    thumbnail_url,
-    details,
-    total_view,
-    rating,
-  } = news;
+  const { title, author, thumbnail_url, details, total_view, rating } = news;
 
   return (
     <div className="card border border-base-200 rounded-md shadow-sm bg-white p-5 mb-6">
@@ -46,7 +45,10 @@ const NewsCard = ({ news }) => {
           {details.length > 250 ? (
             <>
               {details.slice(0, 250)}...
-              <span className="text-orange-500 font-medium cursor-pointer"> Read More</span>
+              <span className="text-orange-500 font-medium cursor-pointer">
+                {" "}
+                Read More
+              </span>
             </>
           ) : (
             details
@@ -57,14 +59,10 @@ const NewsCard = ({ news }) => {
       {/* Footer */}
       <div className="flex items-center justify-between px-4 py-3 border-t border-t-base-300">
         <div className="flex items-center gap-1 text-orange-400">
-          {Array(5)
-            .fill()
-            .map((_, i) => (
-              <FaStar key={i} />
-            ))}
-          <span className="ml-2 text-black text-sm font-medium">
-            {rating.number}
-          </span>
+          {Array.from({ length: rating.number }).map((_, i) => (
+            <FaStar key={i} />
+          ))}
+          <span className="ml-2 text-gray-600">{rating.number}</span>
         </div>
         <div className="flex items-center gap-1 text-gray-500">
           <FaEye />
